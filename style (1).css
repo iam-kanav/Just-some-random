@@ -1,0 +1,487 @@
+/* Dark Mode Color Palette */
+:root {
+    --primary-bg: #1a1a2e; /* Deep dark blue/purple for the page background */
+    --container-bg: #16213e; /* Slightly lighter dark blue/purple for the main content area */
+    --card-bg: #0f3460; /* Even lighter, more vibrant dark blue for cards */
+
+    --text-light: #e0e0e0; /* Off-white for main text */
+    --text-medium: #bbbbbb; /* Slightly darker grey for descriptions */
+    --text-dark: #888888; /* Even darker for less important text */
+
+    --accent-color: #6A0DAD; /* Deep purple for primary accents */
+    --accent-glow: #00FFFF; /* Bright cyan for glow/selected state */
+    --border-color: #334a6d; /* Darker blue for subtle borders */
+
+    --cp-positive: #28a745; /* Green for positive CP */
+    --cp-negative: #dc3545; /* Red for negative CP */
+    --token-color: #FFD700; /* Gold for tokens */
+
+    --button-bg: var(--accent-color);
+    --button-hover-bg: #8a2be2; /* Lighter purple on button hover */
+    --button-text: var(--text-light);
+
+    --drawback-bg: #4a0e14; /* Dark reddish for drawbacks */
+    --drawback-border: #7d2e34; /* Red border for drawbacks */
+    --drawback-hover-bg: #5c161d; /* Lighter red on drawback hover */
+
+    --summary-bg: #282c3f; /* Distinct dark grey-blue for summary */
+
+    --box-shadow-dark: 0 8px 16px rgba(0, 0, 0, 0.4);
+    --box-shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Base Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--primary-bg);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: var(--container-bg);
+    border-radius: 12px;
+    box-shadow: var(--box-shadow-dark);
+    padding: 30px;
+    position: relative;
+    z-index: 1; /* Ensure container is above any potential background patterns */
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding-bottom: 25px;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 35px;
+}
+
+.header-image {
+    max-width: 250px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 50%; /* Make it round */
+    border: 4px solid var(--accent-glow); /* Glowing border effect */
+    box-shadow: 0 0 15px var(--accent-glow); /* Soft glow around the image */
+    margin-bottom: 20px;
+    object-fit: cover; /* Ensure image covers the circle */
+}
+
+.title {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5em;
+    color: var(--accent-glow);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); /* Subtle text glow */
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.intro {
+    font-size: 1.1em;
+    color: var(--text-medium);
+    max-width: 700px;
+    margin: 0 auto 20px;
+}
+
+/* Currency Display */
+.currency-display {
+    background-color: var(--card-bg); /* Darker background for currency */
+    color: var(--text-light);
+    padding: 15px 25px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    box-shadow: var(--box-shadow-medium);
+    border: 1px solid var(--border-color);
+}
+
+.currency-display p {
+    margin: 5px 15px;
+    font-size: 1.15em;
+    font-weight: 700; /* Bolder for currency numbers */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+#current-cp {
+    color: var(--cp-positive); /* Default green for CP */
+}
+#current-cp.negative {
+    color: var(--cp-negative); /* Red for negative CP */
+}
+#current-tokens, #tokens-300cp-used {
+    color: var(--token-color); /* Gold for tokens */
+    text-shadow: 0 0 8px var(--token-color); /* Gold glow */
+}
+#current-cp.positive {
+    text-shadow: 0 0 8px var(--cp-positive); /* Green glow */
+}
+
+/* Category Sections */
+.category {
+    margin-bottom: 45px;
+    padding: 25px 0;
+    border-bottom: 1px dashed var(--border-color); /* Dotted divider */
+}
+
+.category:last-of-type {
+    border-bottom: none;
+}
+
+.category-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5em;
+    color: var(--accent-glow);
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+.category-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, transparent, var(--accent-glow), transparent); /* Glowing line divider */
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* Options Grid */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* Option Cards - General */
+.option-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    box-shadow: var(--box-shadow-medium);
+    display: flex;
+    flex-direction: column;
+}
+
+.option-card:hover {
+    background-color: var(--hover-bg);
+    border-color: var(--accent-glow);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); /* Enhanced glow on hover */
+    transform: translateY(-5px); /* Lift effect */
+}
+
+.option-card input[type="checkbox"],
+.option-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Visual feedback for selected cards */
+.option-card input[type="checkbox"]:checked + h3,
+.option-card input[type="radio"]:checked + h3 {
+    color: var(--accent-glow); /* Highlight title */
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5); /* Glow for selected title */
+}
+
+.option-card input[type="checkbox"]:checked ~ .option-details,
+.option-card input[type="radio"]:checked ~ .option-details,
+.option-card.selected { /* Use .selected for multi-tier selection */
+    border: 2px solid var(--accent-glow); /* Stronger border */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); /* More intense glow */
+}
+
+.option-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--text-light);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.option-card .cost {
+    font-weight: bold;
+    color: var(--token-color); /* Gold for costs */
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.option-card .cost.drawback {
+    color: var(--cp-positive); /* Green for drawback CP */
+}
+
+.option-card .description {
+    font-size: 0.95em;
+    color: var(--text-medium);
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+/* Multi-level controls for perks/items/companions */
+.multi-level-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    justify-content: center;
+}
+
+.option-card button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    flex-grow: 1;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.option-card button:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+.option-card button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.option-card button:disabled {
+    background-color: #4a4a4a;
+    color: #888888;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.option-card .level-display {
+    background-color: var(--border-color);
+    color: var(--text-light);
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3); /* Inner shadow for depth */
+}
+
+/* Token checkbox */
+.token-checkbox-wrapper {
+    margin-top: 15px;
+    font-size: 0.85em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-medium);
+}
+
+.token-checkbox-wrapper input[type="checkbox"] {
+    position: static;
+    opacity: 1;
+    width: 18px;
+    height: 18px;
+    margin-right: 0;
+    cursor: pointer;
+    accent-color: var(--accent-glow); /* Custom checkbox color */
+}
+
+/* Build Summary */
+.build-summary {
+    background-color: var(--summary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 50px;
+    box-shadow: var(--box-shadow-dark);
+}
+
+#build-summary-content ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#build-summary-content li {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.05em;
+}
+
+#build-summary-content li:last-child {
+    border-bottom: none;
+}
+
+#build-summary-content li .item-name {
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+#build-summary-content li .item-cost {
+    color: var(--token-color); /* Gold for item costs */
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); /* Gold glow for costs */
+}
+
+#build-summary-content li .item-cost.drawback {
+    color: var(--cp-positive); /* Green for drawback gains */
+    text-shadow: 0 0 5px rgba(40, 167, 69, 0.5); /* Green glow for gains */
+}
+
+#build-summary-content li .item-cost.free {
+    color: var(--accent-glow); /* Cyan for free items */
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Cyan glow for free */
+}
+
+
+.reset-button {
+    display: block;
+    margin: 30px auto 0;
+    background-color: #6c757d; /* Muted grey for reset */
+    color: var(--button-text);
+    border: none;
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: var(--box-shadow-medium);
+}
+
+.reset-button:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Drawback Specific Styling */
+.drawback-card {
+    background-color: var(--drawback-bg);
+    border: 1px solid var(--drawback-border);
+}
+
+.drawback-card:hover {
+    background-color: var(--drawback-hover-bg);
+    border-color: var(--cp-negative);
+    box-shadow: 0 0 15px rgba(220, 53, 69, 0.6); /* Red glow for drawbacks */
+}
+
+.drawback-card input[type="checkbox"]:checked + h3 {
+    color: var(--cp-negative);
+    text-shadow: 0 0 8px rgba(220, 53, 69, 0.7); /* Red glow for selected drawback title */
+}
+
+.drawback-card input[type="checkbox"]:checked ~ .option-details,
+.drawback-card.selected {
+    border: 2px solid var(--cp-negative);
+    box-shadow: 0 0 20px rgba(220, 53, 69, 0.8); /* More intense red glow */
+}
+
+/* Add a visual indicator for selected cards for radio/checkboxes */
+.option-card input[type="checkbox"]:checked + h3::before,
+.option-card input[type="radio"]:checked + h3::before {
+    content: '✔ '; /* Checkmark for visual confirmation */
+    color: var(--accent-glow);
+    margin-right: 8px;
+}
+.drawback-card input[type="checkbox"]:checked + h3::before {
+    color: var(--cp-negative); /* Red checkmark for drawbacks */
+}
+
+/* Notes section specific styling */
+.notes-section {
+    background-color: var(--summary-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    padding: 25px;
+    margin-top: 40px;
+    box-shadow: var(--box-shadow-medium);
+}
+.notes-section p {
+    font-size: 0.95em;
+    color: var(--text-medium);
+}
+.notes-section strong {
+    color: var(--text-light);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 10px auto;
+    }
+
+    .title {
+        font-size: 2.5em;
+    }
+
+    .category-title {
+        font-size: 2em;
+    }
+
+    .currency-display {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .currency-display p {
+        margin: 5px 0;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .option-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .title {
+        font-size: 2em;
+    }
+
+    .category-title {
+        font-size: 1.8em;
+    }
+
+    .option-card h3 {
+        font-size: 1.2em;
+    }
+
+    .option-card button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
